@@ -33,9 +33,10 @@ void loop() {
 
   // Detectar el botón pulsado
   if (estadoActual == HIGH) {
+
     girarCarusell(15, PIN_DIR_1, PIN_PULSOS_ASCENDENTE);
 
-    delay(1000);
+    delay(100);
 
     girarCarusell(10, PIN_DIR_2, PIN_PULSOS_DESCENDENTE);
   }
@@ -46,13 +47,15 @@ void loop() {
 void girarCarusell(int duracion, int pin_puente_h, int pin_contador) {
   digitalWrite(pin_puente_h, HIGH);
 
+  //delay(1000);
   for (int i = 0; i < duracion; i++) {
-    digitalWrite(pin_contador, HIGH);
-    delay(500);  // 100ms HIGH
     digitalWrite(pin_contador, LOW);
+    delay(500);  // 100ms HIGH
+    digitalWrite(pin_contador, HIGH);
     delay(500);  // 100ms LOW
   }
 
+  digitalWrite(pin_contador, LOW);
   digitalWrite(pin_puente_h, LOW);
 
   delay(200);
